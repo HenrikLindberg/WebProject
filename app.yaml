@@ -13,5 +13,9 @@ handlers:
   static_files: page/\1
   upload: page/.*\.(html|js)$
 
+- url: /(.*/)*$
+  static_files: page/\1/index.html
+  upload: page/.*\.(html|js)$
+
 - url: /.*
   script: _go_app
