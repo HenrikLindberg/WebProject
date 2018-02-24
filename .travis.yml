@@ -1,17 +1,11 @@
 sudo: false
 language: go
-cache:
-  directories:
-  - "$HOME/google-cloud-sdk/"
 env:
 - PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
-- openssl aes-256-cbc -K $encrypted_af318f98dd9a_key -iv $encrypted_af318f98dd9a_iv
-  -in credentials.tar.gz.enc -out credentials.tar.gz -d
-- if [ ! -d ${HOME}/google-cloud-sdk ]; then
-     wget "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-190.0.1-linux-x86_64.tar.gz";
-     tar -xzf "google-cloud-sdk-190.0.1-linux-x86_64.tar.gz"
-  fi
+- openssl aes-256-cbc -K $encrypted_af318f98dd9a_key -iv $encrypted_af318f98dd9a_iv -in credentials.tar.gz.enc -out credentials.tar.gz -d
+- wget -O ${HOME}/google-cloud-sdk.tar.gz "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-190.0.1-linux-x86_64.tar.gz"
+- tar -xzvf ${HOME}/google-cloud-sdk.tar.gz -C ${HOME}
 - tar -xzf credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
