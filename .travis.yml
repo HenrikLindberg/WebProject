@@ -8,7 +8,9 @@ env:
 before_install:
 - openssl aes-256-cbc -K $encrypted_af318f98dd9a_key -iv $encrypted_af318f98dd9a_iv
   -in credentials.tar.gz.enc -out credentials.tar.gz -d
-- if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com | bash;
+- if [ ! -d ${HOME}/google-cloud-sdk ]; then
+     wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-190.0.1-linux-x86_64.tar.gz
+     tar -xzf google-cloud-sdk-190.0.1-linux-x86_64.tar.gz
   fi
 - tar -xzf credentials.tar.gz
 - mkdir -p lib
