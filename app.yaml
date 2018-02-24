@@ -11,6 +11,7 @@ handlers:
 
 - url: /(.*\.(html|js))$
   static_files: page/\1
+  upload: page/.*\.(html|js)$
 
 - url: /.*
   script: _go_app
