@@ -13,4 +13,5 @@ install:
 - gcloud config set project webproject-1337
 - gcloud -q components update gae-go
 script:
+- gcloud components update app
 - gcloud -q preview app deploy app.yaml --promote
